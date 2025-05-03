@@ -9,6 +9,8 @@ namespace Test_Taste_Console_Application.Domain.Services.Interfaces
     ///</summary>
     public interface IPlanetService
     {
+        //Returns a collection of domain Planet objects
+        //The collection is a list of all the planets in the solar system
         IEnumerable<Planet> GetAllPlanets();
     }
 }

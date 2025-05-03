@@ -5,8 +5,11 @@ using System.Text;
 
 namespace Test_Taste_Console_Application.Utilities
 {
+    // This is a static helper class designed to create formatted console output with consistent table layouts.
+    // It provides methods for building text-based tables with proper alignment and borders.
     public static class ConsoleWriter
     {
+        // This method creates a line of dashes and plus signs based on the provided column sizes.
         public static void CreateLine(int[] columnSizes)
         {
             /*
@@ -27,7 +30,7 @@ namespace Test_Taste_Console_Application.Utilities
             Console.WriteLine(stringBuilder.ToString());
             stringBuilder.Clear();
         }
-
+        // This method creates a formatted text line based on the provided column labels and sizes.
         public static void CreateText(string[] columnLabels, int[] columnSizes)
         {
             /*
@@ -55,6 +58,7 @@ namespace Test_Taste_Console_Application.Utilities
             Console.WriteLine(result);
         }
 
+        // This method creates a header for the table using the provided column labels and sizes.
         public static void CreateHeader(string[] columnLabels, int[] columnSizes)
         {
             /*
@@ -67,7 +71,7 @@ namespace Test_Taste_Console_Application.Utilities
             CreateText(columnLabels, columnSizes);
             CreateLine(columnSizes);
         }
-
+        // This method creates empty lines in the console output.
         public static void CreateEmptyLines(int totalEmptyLines)
         {
             //The function can create empty spaces.
