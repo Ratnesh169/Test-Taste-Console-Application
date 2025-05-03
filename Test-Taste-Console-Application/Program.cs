@@ -11,6 +11,7 @@ using Test_Taste_Console_Application.Utilities;
 
 namespace Test_Taste_Console_Application
 {
+    //This is the main entry point of the console application 
     class Program
     {
         static void Main(string[] args)
@@ -32,16 +33,20 @@ namespace Test_Taste_Console_Application
 
             try
             {
+                // Execute display operations
+                Console.WriteLine("Starting data processing...");
                 screenOutputService.OutputAllPlanetsAndTheirAverageMoonGravityToConsole();
                 screenOutputService.OutputAllMoonsAndTheirMassToConsole();
                 screenOutputService.OutputAllPlanetsAndTheirMoonsToConsole();
+                screenOutputService.OutputAllPlanetsAndTheirAverageMoonTemperatureToConsole();
+                Console.WriteLine("Data processing completed.");
             }
             catch (Exception exception)
             {
                 //The users and developers can see the thrown exceptions.
                 Logger.Instance.Error($"{LoggerMessage.ScreenOutputOperationFailed}{exception.Message}");
                 Console.WriteLine($"{ExceptionMessage.ScreenOutputOperationFailed}{exception.Message}");
-                System.Diagnostics.Debug.WriteLine($""{ExceptionMessage.ScreenOutputOperationFailed}{exception.Message}"");
+                System.Diagnostics.Debug.WriteLine($"{ExceptionMessage.ScreenOutputOperationFailed}{exception.Message}");
             }
 
             serviceProvider.Dispose();
@@ -50,8 +55,11 @@ namespace Test_Taste_Console_Application
         private static void ConfigureServices(IServiceCollection serviceCollection)
         {
             //The function configures all the services.
+
+            // Logger configuration
             XmlConfigurator.Configure(LogManager.GetRepository(Assembly.GetEntryAssembly()),
                 new FileInfo(ConfigurationFileName.Logger));
+            // Service registrations
             serviceCollection.AddHttpClient<HttpClientService>();
             serviceCollection.AddSingleton<IPlanetService, PlanetService>();
             serviceCollection.AddSingleton<IOutputService, ScreenOutputService>();
